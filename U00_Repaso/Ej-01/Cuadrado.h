@@ -3,6 +3,19 @@
 
 
 class Cuadrado {
+protected:
+    float lado;
+public:
+    float getLado() const;
+
+    void setLado(float lado);
+
+    float getPerimetro();
+
+    float getSuperficie();
+
+    float getDiagonal();
+
 
 };
 

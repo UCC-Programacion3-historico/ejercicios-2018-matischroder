@@ -3,6 +3,13 @@
 
 
 class Color {
+protected:
+    char rojo;
+    char verde;
+    char azul;
+public:
+    char getcolor();
+    char
 
 };
 
