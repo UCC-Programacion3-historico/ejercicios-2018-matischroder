@@ -6,9 +6,12 @@
 
 template<class T>
 Lista<T> *unir(Lista<T> &lisA, Lista<T> &lisB) {
-
-    return new Lista<T>();
+    auto *aux = lisA.inicio;
+    while (aux.getNext()!= nullptr)
+        aux=aux.getNext();
+    aux.setNext(lisB.inicio);
 }
+
 
 
 #endif //UNION_H

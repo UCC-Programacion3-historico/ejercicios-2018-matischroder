@@ -14,7 +14,7 @@ public:
     float getSuperficie();
 
     float getPerimetro();
-}
+};
 
 
 #endif //REPASO_CIRCULO_H

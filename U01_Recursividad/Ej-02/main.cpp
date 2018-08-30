@@ -4,18 +4,19 @@
 using namespace std;
 
 int main() {
-    int *arr;
+    int arr;
+    int *arrPtr=&arr;
     int size;
 
     std::cout << "Ejercicio 01/02\n" << std::endl;
-    cout<<"ingrese cantidad de numeros a sumar"<<endl;
+    std::cout<<"ingrese cantidad de numeros a sumar"<<endl;
     cin>>size;
-    arr= new int(size);
+    arrPtr= new int(size);
     for(int i=0; i<size;i++){
-        cout<<"ingrese numero"<<i<<" ";
-        cin>>arr[i];
+        cout<<"ingrese numero "<<i+1<<" ";
+        cin>>*(arrPtr+i);
     }
-    cout << "sumatoria= "<<sumatoria(arr,size)<<endl;
-
+    cout << "sumatoria= "<<sumatoria(arrPtr,size)<<endl;
+    arr = delete int (size);
     return 0;
 }

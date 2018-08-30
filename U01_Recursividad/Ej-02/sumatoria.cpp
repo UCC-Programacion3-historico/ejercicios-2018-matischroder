@@ -1,8 +1,8 @@
 #include "sumatoria.h"
 
 
-int sumatoria(int arr, unsigned int size) {
+int sumatoria(int arrPtr, unsigned int size) {
     if (size == 0)
-        return arr[size];
-    return arr[size] + sumatoria (arr ,size - 1);
+        return *arrPtr;
+    return *(arrPtr+size) + sumatoria (arr ,size - 1);
 }
