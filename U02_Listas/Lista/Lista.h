@@ -12,6 +12,7 @@ template<class T>
 class Lista {
 private:
     nodo<T> *inicio;
+
 public:
     Lista();
 
@@ -36,6 +37,9 @@ public:
     void reemplazar(int pos, T dato);
 
     void vaciar();
+
+    nodo<T> *getInicio() const;
+
 };
 
 
@@ -250,6 +254,11 @@ void Lista<T>::reemplazar(int pos, T dato) {
  */
 template<class T>
 void Lista<T>::vaciar() {}
+
+template<class T>
+nodo<T> *Lista<T>::getInicio() const {
+    return inicio;
+}
 
 
 #endif //LISTA_H

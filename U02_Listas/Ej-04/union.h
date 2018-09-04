@@ -4,12 +4,12 @@
 #define UNION_H
 
 
-template<class T>
+template <class T>
 Lista<T> *unir(Lista<T> &lisA, Lista<T> &lisB) {
-    auto *aux = lisA.inicio;
-    while (aux.getNext()!= nullptr)
-        aux=aux.getNext();
-    aux.setNext(lisB.inicio);
+    auto *aux = lisA.getInicio();
+    while (aux->getNext()!= nullptr)
+        aux=aux->getNext();
+    aux->getNext(lisB.getInicio());
 }
 
 
