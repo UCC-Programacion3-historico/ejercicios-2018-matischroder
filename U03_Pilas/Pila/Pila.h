@@ -75,11 +75,12 @@ void Pila<T>::push(T dato) {
  */
 template<class T>
 T Pila<T>::pop() {
-    if(tope == nullptr)
+    if(tope == nullptr){
         throw 1;
+    }
     T dato = tope->getDato();
     nodo<T> *aux = tope;
-    tope=tope->getNext();
+    tope = tope->getNext();
     delete aux;
     return dato;
 }
