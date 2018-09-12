@@ -13,8 +13,6 @@ bool igualdad(Pila <int> &pA,Pila <int> &pB){
     }catch(int e){
         return false;
     }
-
-
 }
 
 int main() {

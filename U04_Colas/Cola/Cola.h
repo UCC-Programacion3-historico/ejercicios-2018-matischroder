@@ -9,18 +9,15 @@
 
 #include "nodo.h"
 
-
 template<class T>
-class Cola {
+class ColaPrioridades {
 private:
     nodo<T> *entrada;
     nodo<T> *salida;
-
 public:
+    ColaPrioridades();
 
-    Cola();
-
-    ~Cola();
+    ~ColaPrioridades();
 
     void encolar(T dato);
 
@@ -35,7 +32,7 @@ public:
  * @tparam T
  */
 template<class T>
-Cola<T>::Cola() {
+ColaPrioridades<T>::ColaPrioridades() {
     entrada = nullptr;
     salida = nullptr;
 }
@@ -47,7 +44,7 @@ Cola<T>::Cola() {
  * @tparam T
  */
 template<class T>
-Cola<T>::~Cola() {}
+ColaPrioridades<T>::~ColaPrioridades() {}
 
 
 /**
@@ -56,13 +53,13 @@ Cola<T>::~Cola() {}
  * @param dato  dato a insertar
  */
 template<class T>
-void Cola<T>::encolar(T dato) {
+void ColaPrioridades<T>::encolar(T dato) {
     auto *nuevo = new nodo<T>(dato, nullptr);
-    if (entrada != nullptr){
-        entrada->getNext(nuevo);
-    }
+    if (entrada != nullptr)
+        entrada->setNext(nuevo);
     else
         salida = nuevo;
+
     entrada = nuevo;
 }
 
@@ -73,9 +70,10 @@ void Cola<T>::encolar(T dato) {
  * @return dato almacenado en el nodo
  */
 template<class T>
-T Cola<T>::desencolar() {
+T ColaPrioridades<T>::desencolar() {
     if (salida == nullptr)
         throw 1;
+
     T dato = salida->getDato();
     nodo<T> *salida_anterior = salida;
     salida = salida->getNext();
@@ -85,7 +83,6 @@ T Cola<T>::desencolar() {
 
     delete salida_anterior;
     return dato;
-
 }
 
 /**
