@@ -1,19 +1,20 @@
 #include <iostream>
 #include "../Pila/Pila.h"
 
-template <class T>
 
-/*bool*/void igualdad(Pila <T> pA,Pila <T> pB){
-    if(pA.peek()==pB.peek()){
-        if(pA.esVacia()&&pB.esVacia())
-            std::cout<<"Son iguales"<<std::endl;
-            /*return true;*/
+bool igualdad(Pila <int> &pA,Pila <int> &pB){
+    if(pA.esVacia()&&pB.esVacia())
+        return true;
+    try {
+        if(pA.pop()==pB.pop())
+            return igualdad(pA,pB);
         else
-            igualdad(pA.pop(),pB.pop());
+            return false;
+    }catch(int e){
+        return false;
     }
-    else
-        /*return false;*/
-        std::cout<<"No son iguales"<<std::endl;
+
+
 }
 
 int main() {
@@ -22,8 +23,9 @@ int main() {
     Pila<int> B;
     A.push(1);
     A.push(2);
+    A.push(3);
     B.push(1);
     B.push(2);
-    igualdad(A,B);
+    std::cout<<igualdad(A,B);
     return 0;
 }
