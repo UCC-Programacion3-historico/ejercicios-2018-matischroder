@@ -4,12 +4,10 @@
 #define UNION_H
 
 
-template <class T>
-Lista<T> *unir(Lista<T> &lisA, Lista<T> &lisB) {
-    auto *aux = lisA.getInicio();
-    while (aux->getNext()!= nullptr)
-        aux=aux->getNext();
-    aux->getNext(lisB.getInicio());
+void unir(Lista<int> &lisA, Lista<int> &lisB) {
+    for (int i=0;i<lisB.getTamanio();i++){
+        lisA.insertarUltimo(lisB.getDato(i+1));
+    }
 }
 
 

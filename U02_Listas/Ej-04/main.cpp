@@ -7,36 +7,37 @@ int main() {
 
     cout<< "Ejercicio 01/04\n" << std::endl;
 
-    Lista <int>l1; //Primer lista
-    int t1;
-    cout<<"Ingrese cantidad de elmentos de la lista 1"<<endl;
-    cin>>t1;
-    for (int i=0;i<t1;i++){
-        int n;
-        cout<<"Ingrese entero"<<endl;
-        cin>>n;
-        l1.insertar(i,n);
-    }
+    Lista<int> lis1;
+    lis1.insertarUltimo(1);
+    lis1.insertarUltimo(2);
+    lis1.insertarUltimo(3);
+    lis1.insertarUltimo(4);
+    lis1.insertarUltimo(5);
 
-    Lista <int>l2; //segunda lista
-    int t2;
-    cout<<"Ingrese cantidad de elmentos de la lista 2"<<endl;
-    cin>>t2;
-    for (unsigned int i=0;i<t2;i++){
-        int n;
-        cout<<"Ingrese entero"<<endl;
-        cin>>n;
-        l1.insertar(i,n);
-    }
+    Lista<int> lis2;
+    lis2.insertarUltimo(1);
+    lis2.insertarUltimo(2);
+    lis2.insertarUltimo(3);
+    lis2.insertarUltimo(4);
+    lis2.insertarUltimo(5);
+    lis2.insertarUltimo(9);
 
-    Lista unir(l1,l2);
+    unir(lis1,lis2);
 
-    cout<<"Corroboracion de clase lista"<<endl;//corroboracion si se anninaron las listas
-    int t3=t1+t2;
-    for (int i = 0;i<t3;i++){
-        cout<<l1.getDato(i)<<endl;
-    }
-    cout<<"Tamaño de lista= "<<l1.getTamanio()<<endl;
+    cout<<lis1.getDato(1)<<endl;
+    cout<<lis1.getDato(2)<<endl;
+    cout<<lis1.getDato(3)<<endl;
+    cout<<lis1.getDato(4)<<endl;
+    cout<<lis1.getDato(5)<<endl;
+    cout<<lis1.getDato(6)<<endl;
+    cout<<lis1.getDato(7)<<endl;
+    cout<<lis1.getDato(8)<<endl;
+    cout<<lis1.getDato(9)<<endl;
+    cout<<lis1.getDato(10)<<endl;
+    cout<<lis1.getDato(11)<<endl;
+    cout<<endl;
+
+
 
     return 0;
 }

@@ -10,10 +10,11 @@ int main() {
     cin>>t;
     for (int i=0;i<t;i++){
         int n;
-        cout<<"Ingrese entero"<<endl;
+        cout<<"Ingrese entero " <<i+1<<endl;
         cin>>n;
         l1.insertar(i,n);
     } //el ejercicio termina aca
+    cout<<endl;
     cout<<"Corroboracion de clase lista"<<endl;
     l1.insertar(3,9);
     for (int i = 0;i<t;i++){
