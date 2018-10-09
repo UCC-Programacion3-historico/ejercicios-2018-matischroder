@@ -1,24 +1,22 @@
 #ifndef LISTA_H
 #define LISTA_H
-
 #include "nodo.h"
 
 /**
- * Clase que implementa una Lista Enlasada generica, ya que puede
+ * Clase que implementa una Lista Enlazada generica, ya que puede
  * almacenar cualquier tipo de dato T
  * @tparam T cualquier tipo de dato
  */
 template<class T>
 class Lista {
 private:
-    nodo<T> *inicio;
-
+    Nodo<T> *inicio;
 public:
     Lista();
 
     Lista(const Lista<T> &li);
 
-    ~Lista();
+    ~Lista(); //necesito destructor porque la lista usa memoria dinamica
 
     bool esVacia();
 
@@ -32,14 +30,11 @@ public:
 
     void remover(unsigned int pos);
 
-    T getDato(int pos);
+    T getDato(unsigned int pos);
 
-    void reemplazar(int pos, T dato);
+    void reemplazar(int pos, T dato); // "editar" dato
 
     void vaciar();
-
-    nodo<T> *getInicio() const;
-
 };
 
 
@@ -77,7 +72,9 @@ Lista<T>::~Lista() {}
  * @return true si la lista esta vacia, sino false
  */
 template<class T>
-bool Lista<T>::esVacia() { return inicio == nullptr; }
+bool Lista<T>::esVacia() {
+    return inicio == nullptr; // si o no xd
+}
 
 
 /**
@@ -87,12 +84,13 @@ bool Lista<T>::esVacia() { return inicio == nullptr; }
  */
 template<class T>
 int Lista<T>::getTamanio() {
+    //recorrer hasta llegar a null
     int cant = 0;
-    nodo<T> *aux = inicio;
-
-    while (aux != nullptr) {
+    Nodo<T> *aux = inicio; //creo nodo auxiliar igual al inicio.
+    //recorro mientras aux no sea el puntero nulo, cambiando aux al siguiente cada vuelta.
+    while(aux != nullptr){
         cant++;
-        aux = aux->getNext();
+        aux = aux->getNext(); //auxiliar va a ser el siguiente usando la funcion getNext
     }
     return cant;
 }
@@ -106,28 +104,28 @@ int Lista<T>::getTamanio() {
  */
 template<class T>
 void Lista<T>::insertar(unsigned int pos, T dato) {
-    auto *nuevo = new nodo<T>();
-    nodo<T> *aux = inicio;
-    int pos_actual = 0;
-
-    nuevo->setDato(dato);
-
-    if (pos == 0) {
+    auto *nuevo = new Nodo<T>(); //auto es equivalente a Nodo<T> (nuevo va a ser del tipo Nodo T)
+    Nodo<T> *aux = inicio; //puntero auxiliar que apunta a inicio
+    if(pos == 0){ //caso especial
         nuevo->setNext(inicio);
         inicio = nuevo;
         return;
     }
 
-    while (pos_actual < pos - 1 && aux != nullptr) {
+    nuevo->setDato(dato); // le meto el dato parametro
+
+    int pos_actual = 0; //voy pasando la lista cambiando el auxiliar
+    while(pos_actual < pos-1 && aux != nullptr){
         pos_actual++;
-        aux = aux->getNext();
+        aux = aux->getNext(); //auxiliar va a ser el siguiente usando la funcion getNext
+    }
+    if(aux == nullptr){
+        throw 1;
+    }else{
+        nuevo->setNext(aux->getNext()); // nuevo apunta a donde apunta aux
+        aux->setNext(nuevo); //y aux apunta al nuevo nodo creado
     }
 
-    if (aux == nullptr)
-        throw 1;
-
-    nuevo->setNext(aux->getNext());
-    aux->setNext(nuevo);
 }
 
 
@@ -138,11 +136,11 @@ void Lista<T>::insertar(unsigned int pos, T dato) {
  */
 template<class T>
 void Lista<T>::insertarPrimero(T dato) {
-    auto *nuevo = new nodo<T>();
+    auto *nuevo = new Nodo<T>();
     nuevo->setDato(dato);
-
     nuevo->setNext(inicio);
     inicio = nuevo;
+
 }
 
 
@@ -153,18 +151,19 @@ void Lista<T>::insertarPrimero(T dato) {
  */
 template<class T>
 void Lista<T>::insertarUltimo(T dato) {
-    auto *nuevo = new nodo<T>();
-    auto *aux = inicio;
+    auto *nuevo = new Nodo<T>();
+    Nodo<T> *aux = inicio;
 
     nuevo->setDato(dato);
     nuevo->setNext(nullptr);
 
-    if (aux == nullptr) {
+    if(aux == nullptr){ //si la lista es vacia
         inicio = nuevo;
         return;
     }
 
-    while (aux->getNext() != nullptr) {
+
+    while(aux->getNext() != nullptr){ //Si el siguiente del auxiliar es nulo, sino me voy de la lista.
         aux = aux->getNext();
     }
 
@@ -179,28 +178,40 @@ void Lista<T>::insertarUltimo(T dato) {
  */
 template<class T>
 void Lista<T>::remover(unsigned int pos) {
-    auto *aux = inicio;
+    Nodo<T> *aux = inicio;
 
-    while (pos > 1 && aux != nullptr) {
+    while(pos > 1 && aux != nullptr){
         pos--;
         aux = aux->getNext();
     }
-
-    // Error no extiste el nodo (me pase)
-    if (aux == nullptr)
+    //una vez llegado al nodo que me interesa
+    //la forma mas larga seria
+    /*
+     Nodo<T> *siguiente = aux->getNext();
+     siguiente = siguiente->getNext();
+     aux->setNext(siguiente);
+    */
+    if(aux == nullptr){ //no existe el nodo
         throw 1;
-
-    if (pos == 0) { // si elimino el primer nodo.
+    }
+    if(pos == 0){ //si elimino el primer nodo
         inicio = inicio->getNext();
         delete aux;
-    } else { // todos los otros casos.
-        auto *siguiente = aux->getNext();
-        if (siguiente == nullptr) // Caso particular un solo elemento con borrar pos=1
+    }else{
+        /*aux->setNext(aux->getNext()->getNext()) //aux get next es siguiente, entonces necesito el siguiente. seria el siguiente del siguiente
+        delete aux->getNext();
+        aux->setNext(nullptr);*/
+        Nodo<T> *siguiente = aux->getNext();
+        if(siguiente == nullptr){
             throw 2;
-
-        aux->setNext(siguiente->getNext());
-        delete siguiente;
+        }
+        else{
+            aux->setNext(siguiente->getNext());
+            delete siguiente;
+        }
     }
+
+
 }
 
 
@@ -211,17 +222,17 @@ void Lista<T>::remover(unsigned int pos) {
  * @return dato almacenado en el nodo
  */
 template<class T>
-T Lista<T>::getDato(int pos) {
-    auto *aux = inicio;
+T Lista<T>::getDato(unsigned int pos) {
+    Nodo<T> *aux = inicio;
 
-    while (pos > 0 && aux != nullptr) {
+    while(pos > 1 && aux != nullptr){
         pos--;
         aux = aux->getNext();
     }
-
-    if (aux == nullptr)
+    //una vez llegado al nodo que me interesa
+    if(aux == nullptr){
         throw 1;
-
+    }
     return aux->getDato();
 }
 
@@ -234,16 +245,16 @@ T Lista<T>::getDato(int pos) {
  */
 template<class T>
 void Lista<T>::reemplazar(int pos, T dato) {
-    auto *aux = inicio;
+    Nodo<T> *aux = inicio;
 
-    while (pos > 0 && aux != nullptr) {
+    while(pos > 1 && aux != nullptr){
         pos--;
         aux = aux->getNext();
     }
-
-    if (aux == nullptr)
+    //una vez llegado al nodo que me interesa
+    if(aux == nullptr){
         throw 1;
-
+    }
     aux->setDato(dato);
 }
 
@@ -254,11 +265,6 @@ void Lista<T>::reemplazar(int pos, T dato) {
  */
 template<class T>
 void Lista<T>::vaciar() {}
-
-template<class T>
-nodo<T> *Lista<T>::getInicio() const {
-    return inicio;
-}
 
 
 #endif //LISTA_H

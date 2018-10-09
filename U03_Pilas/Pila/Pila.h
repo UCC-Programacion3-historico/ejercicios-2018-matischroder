@@ -3,6 +3,7 @@
 
 #include "../nodo.h"
 #include "../../U02_Listas/Lista/nodo.h"
+#include <string.h>
 
 /**
  * Clase que implementa una Pila generica, ya que puede

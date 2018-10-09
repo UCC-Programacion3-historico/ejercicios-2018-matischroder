@@ -6,26 +6,27 @@
 #define PROGRAMACION3_NODO_H
 
 template <class T>
-class nodo {
+class Nodo {
 private:
     T dato;
-    nodo *next;
+    Nodo *next;
 public:
     T getDato() const {
         return dato;
     }
 
     void setDato(T dato) {
-        nodo::dato = dato;
+        Nodo::dato = dato;
     }
 
-    nodo *getNext() const {
+    Nodo *getNext() const {
         return next;
     }
 
-    void setNext(nodo *next) {
-        nodo::next = next;
+    void setNext(Nodo *next) {
+        Nodo::next = next;
     }
+
 };
 
 

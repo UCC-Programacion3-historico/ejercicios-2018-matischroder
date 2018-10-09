@@ -91,14 +91,8 @@ T ColaPrioridades<T>::desencolar() {
  * @return
  */
 template<class T>
-bool Cola<T>::esVacia() {
+bool ColaPrioridades<T>::esVacia() {
     return salida == nullptr;
-
-    /*if (salida== nullptr){
-        return true;             Same
-        else
-        return false;
-    }*/
 }
 
 #endif //LISTA_H
