@@ -49,6 +49,6 @@ int main() {
     if(elefra.esVacia())
         cout<<"La ecuacion esta bien escrita"<<endl;
     else
-        cout<<"La ecuacion esta mal escrita";
+        cout<<"La ecuacion esta mal escrita"<<endl;
     return 0;
 }

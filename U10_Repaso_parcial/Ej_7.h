@@ -1,9 +1,15 @@
-#ifndef LISTA_H
-#define LISTA_H
+//implementar un metodo a la calse lista que reciba un parametro N y que mueva el primer elemento a la posicion N.
+//. si la posicion no exciste debe tirar una excepcion
+// Created by user on 9/10/2018.
+//
+
+#ifndef PROGRAMACION3_EJ_7_H
+#define PROGRAMACION3_EJ_7_H
+
 
 #include <list>
 
-#include "U02_Listas/Lista/nodo.h"
+#include "C:\Users\user\Desktop\facultad\programacion 3\git\ejercicios-2018-matischroder\U02_Listas\Lista\nodo.h"
 
 /**
  * Clase que implementa una Lista Enlasada generica, ya que puede
@@ -38,6 +44,8 @@ public:
     void reemplazar(int pos, T dato);
 
     void vaciar();
+
+    void moverpri (int pos);
 };
 
 
@@ -102,6 +110,28 @@ int Lista<T>::getTamanio() {
  * @param pos lugar donde será insertado el dato
  * @param dato  dato a insertar
  */
+
+/**
+ * Constructor de la clase Lista
+ * @tparam T
+ */
+
+template<class T>
+void Lista<T>::moverpri(int pos) {
+    int pos_ini = 0;
+    auto *temp = new nodo <T>;
+    nodo<T> *aux = inicio;
+    temp->setNext(inicio->getNext());
+    for (pos_ini; pos_ini<pos-2; pos_ini++){
+        temp=temp->getNext();
+        if (temp== nullptr)
+            throw 404;
+    }
+    temp->setNext(aux->setDato());
+    aux->setNext(temp->getNext());
+    inicio=inicio->getNext();
+}
+
 template<class T>
 void Lista<T>::insertar(unsigned int pos, T dato) {
     auto *nuevo = new nodo<T>();
@@ -254,4 +284,5 @@ template<class T>
 void Lista<T>::vaciar() {}
 
 
-#endif //LISTA_H
+
+#endif //PROGRAMACION3_EJ_7_H

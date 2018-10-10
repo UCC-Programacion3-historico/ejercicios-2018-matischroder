@@ -6,8 +6,8 @@ Pila -> 2 5
 Lista nueva-> 2 ->6 ->8 ->9
 */
 #include "../U03_Pilas/Pila/Pila.h"
-#include "../U02_Listas/Lista/Lista.h"
-
+#include "C:\Users\user\Desktop\facultad\programacion 3\git\ejercicios-2018-matischroder\U02_Listas\Lista\Lista.h"
+#include <list>
 #include "Ej_1.h"
 #include <iostream>
 using namespace std;

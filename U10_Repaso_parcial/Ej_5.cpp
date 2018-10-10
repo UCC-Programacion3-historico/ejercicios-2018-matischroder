@@ -10,18 +10,19 @@ using namespace std;
 
 void invertir(string a){
     int c=0;
-    Pila <string> A;
+    Pila <char> A;
     for (int i=0; i<a.length(); i++){
         c++;
         if(a[i]==' '){
-            for(int j=i-c; j<c ; j++){
+            for(int j=c-1; j>=1 ; j--){
                 A.push(a[j]);
             }
             c=0;
+            A.push(' ');
          }
     }
     do{
-        A.pop();
+        cout<<A.pop();
     }while (!A.esVacia());
 }
 

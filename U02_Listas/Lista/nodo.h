@@ -1,32 +1,28 @@
-//
-// Created by alumno on 29/08/18.
-//
-
 #ifndef PROGRAMACION3_NODO_H
 #define PROGRAMACION3_NODO_H
 
-template <class T>
-class Nodo {
+template<class T>
+
+class nodo {
 private:
     T dato;
-    Nodo *next;
+    nodo *next;
 public:
     T getDato() const {
         return dato;
     }
 
     void setDato(T dato) {
-        Nodo::dato = dato;
+        nodo::dato = dato;
     }
 
-    Nodo *getNext() const {
+    nodo *getNext() const {
         return next;
     }
 
-    void setNext(Nodo *next) {
-        Nodo::next = next;
+    void setNext(nodo *next) {
+        nodo::next = next;
     }
-
 };
 
 

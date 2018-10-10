@@ -28,6 +28,8 @@ public:
     T desencolar();
 
     bool esVacia();
+
+    void encolarp(Tdato,int prioridad);
 };
 
 
@@ -82,6 +84,10 @@ void ColaPrioridades<T>::encolar(T dato,int p) {
     entrada[p] = nuevo;
 }
 
+template<class T>
+void ColaPrioridades<T>::encolarp(T dato, int prioridad) {
+    auto *nuevo
+}
 
 /**
  * Obtener el dato de la Cola
@@ -122,5 +128,6 @@ bool ColaPrioridades<T>::esVacia() {
         return false;
     }*/
 }
+
 
 #endif //LISTA_H

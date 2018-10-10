@@ -2,7 +2,7 @@
 #include "../Cola/Cola.h"
 using namespace std;
 
-bool igualdad(Cola <int> &cA,Cola <int> &cB){
+bool igualdad(ColaPrioridades<char> &cA,ColaPrioridades<char> &cB){
     if(cA.esVacia()&&cB.esVacia())
         return true;
     try {
@@ -17,12 +17,15 @@ bool igualdad(Cola <int> &cA,Cola <int> &cB){
 
 int main() {
     std::cout << "Ejercicio 04/01\n" << std::endl;
-    Cola<int> a;
-    Cola<int> b;
+    ColaPrioridades<char> a;
+    ColaPrioridades<char> b;
     for (int i=0;i<10;i++){
-        a.encolar(i);
-        b.encolar(i);
+        a.encolar('g');
+        b.encolar('g');
     }
-    cout<<igualdad(a,b);
+    if (igualdad(a,b)==1)
+        cout<<"Son iguales"<<endl;
+    else
+        cout<<"Son distintas"<<endl;
     return 0;
 }
