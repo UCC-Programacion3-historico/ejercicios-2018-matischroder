@@ -46,6 +46,9 @@ public:
     void vaciar();
 
     void moverpri (int pos);
+
+    void moverPrimero (  int pos);
+
 };
 
 
@@ -121,7 +124,7 @@ void Lista<T>::moverpri(int pos) {
     int pos_ini = 0;
     auto *temp = new nodo <T>;
     nodo<T> *aux = inicio;
-    temp->setNext(inicio->getNext());
+    temp->setNext(aux->getNext());
     for (pos_ini; pos_ini<pos-2; pos_ini++){
         temp=temp->getNext();
         if (temp== nullptr)
@@ -132,6 +135,35 @@ void Lista<T>::moverpri(int pos) {
     inicio=inicio->getNext();
 }
 
+template<class T>
+
+void Lista<T>::moverPrimero(int pos) {
+
+    auto *nuevo = new nodo<T>();
+    nodo<T> *aux = inicio;
+    int pos_actual = 0;
+
+    nuevo->setDato(aux->getDato());
+
+    if (pos == 0) {
+        nuevo->setNext(inicio);
+        inicio = nuevo;
+        return;
+    }
+
+    while (pos_actual < pos - 1 && aux != nullptr) {
+        pos_actual++;
+        aux = aux->getNext();
+    }
+
+    if (aux == nullptr)
+        throw 1;
+
+    nuevo->setNext(aux->getNext());
+    aux->setNext(nuevo);
+
+    remover(0); //remuevo el primer elemento pq ya movi su dato a la posicion n
+}
 template<class T>
 void Lista<T>::insertar(unsigned int pos, T dato) {
     auto *nuevo = new nodo<T>();

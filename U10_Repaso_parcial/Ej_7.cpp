@@ -15,8 +15,9 @@ int main(){
         for(int i=0;i<4;i++){
             cout<<l1.getDato(i)<<"->";
         }
+        cout<<endl;
 
-        l1.moverpri(3);
+        l1.moverPrimero(3);
 
         for(int i=0;i<4;i++){
            cout<<l1.getDato(i)<<"->";
